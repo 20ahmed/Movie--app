@@ -1,32 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+
+$bgColor: #131722;
+$lightBg: #24baef;
+$fontColor: #fff;
+$fontWeight: bolder;
+
 body {
   margin: 0;
   font-family: "Montserrat Alternates", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #131722;
-  color: #fff;
+  background-color: $bgColor;
+  color: $fontColor;
 }
 
 a {
-  color: #fff;
+  color: $fontColor;
   text-decoration: none;
   font-weight: 500;
 }
 
 a:hover {
   color: #092632;
-  font-weight: bolder;
+  font-weight: $fontWeight;
 }
 
 link {
-  color: #fff;
+  color: $fontColor;
   text-decoration: none;
   font-weight: 500;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 .sign-up {
@@ -37,19 +44,20 @@ code {
   position: relative;
 }
 
-.line-common, .line:before, .line:after {
+.line-common {
   content: "";
   display: block;
   height: 1px;
   background-color: gray;
   position: absolute;
 }
-
 .line:after {
+  @extend .line-common;
   width: 20vmax;
 }
 
 .line:before {
+  @extend .line-common;
   width: 10vmax;
   top: -10px;
 }
@@ -74,46 +82,44 @@ code {
   transition: transform 0.3s;
 }
 
+@mixin hoverLink($bg, $trans) {
+  background: $bg;
+  transform: $trans;
+}
+
 .wrapper .github:hover link,
 .wrapper .github:hover,
 .wrapper .github:hover :before {
-  background: #333;
-  transform: scale(1.2);
+  @include hoverLink(#333, scale(1.2));
 }
 
 .wrapper .facebook:hover link,
 .wrapper .facebook:hover,
 .wrapper .facebook:hover :before {
-  background: #3b5999;
-  transform: scale(1.2);
+  @include hoverLink(#3b5999, scale(1.2));
 }
 
 .wrapper .twitter:hover link,
 .wrapper .twitter:hover,
 .wrapper .twitter:hover :before {
-  background: #092632;
-  transform: scale(1.2);
+  @include hoverLink(#092632, scale(1.2));
 }
-
 .wrapper .linkedin:hover link,
 .wrapper .linkedin:hover,
 .wrapper .linkedin:hover :before {
-  background: #0a66c2;
-  transform: scale(1.2);
+  @include hoverLink(#0a66c2, scale(1.2));
 }
 
 .wrapper .instagram:hover link,
 .wrapper .instagram:hover,
 .wrapper .instagram:hover :before {
-  background: #c32aa3;
-  transform: scale(1.2);
+  @include hoverLink(#c32aa3, scale(1.2));
 }
 
 .wrapper .google:hover link,
 .wrapper .google:hover,
 .wrapper .google:hover :before {
-  background: #4285f4;
-  transform: scale(1.2);
+  @include hoverLink(#4285f4, scale(1.2));
 }
 
 .link-ul li {
@@ -124,11 +130,12 @@ code {
 .link-ul li:hover {
   color: #092632 !important;
   transform: scale(1.2);
-  font-weight: bolder;
+  font-weight: $fontWeight;
 } /* 999999999999999999999999999999999999 */
+
 .offline {
   position: fixed;
   left: 0px;
   bottom: 10%;
   z-index: 9999;
-}/*# sourceMappingURL=index.css.map */
+}
